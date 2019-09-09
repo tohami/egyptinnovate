@@ -1,5 +1,6 @@
 package com.tohami.egyptinnovate.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.navigation.NavigationView;
 import com.tohami.egyptinnovate.R;
+import com.tohami.egyptinnovate.app.localization.Language;
 import com.tohami.egyptinnovate.ui.base.BaseActivity;
 import com.tohami.egyptinnovate.ui.navigation.NavigationDrawerFragment;
 import com.tohami.egyptinnovate.ui.news.list.viewModel.NewsListViewModel;
@@ -25,7 +27,6 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout drawerLayout;
     private NavController navController;
     private NavigationView navigationView;
-    private NewsListViewModel mViewModel;
 
     @Inject
     NewsListViewModelFactory viewModelFactory;
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(this, viewModelFactory)
+        NewsListViewModel mViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(NewsListViewModel.class);
 
         if (savedInstanceState == null)
@@ -65,7 +66,13 @@ public class MainActivity extends BaseActivity {
                     break;
 
                 case R.id.drawer_language:
-                    showSimpleSnack(getString(R.string.lang_clicked));
+                    if(appSettings.getCurrentLanguage() == Language.ENGLLSH){
+                        appSettings.SetCurrentLanguage(Language.ARABIC);
+                    }else {
+                        appSettings.SetCurrentLanguage(Language.ENGLLSH);
+                    }
+                    finish();
+                    startActivity(new Intent(MainActivity.this , MainActivity.class));
                     break;
 
                 case R.id.drawer_leadership:

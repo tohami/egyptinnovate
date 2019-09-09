@@ -1,7 +1,5 @@
 package com.tohami.egyptinnovate.ui.base;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -11,24 +9,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.tohami.egyptinnovate.app.InnovateApplication;
 import com.tohami.egyptinnovate.R;
-import com.tohami.egyptinnovate.utilities.LocaleContextWrapper;
+import com.tohami.egyptinnovate.app.settings.AppSettings;
+import com.tohami.egyptinnovate.app.localization.LocalizationHelper;
+
+import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
-
-import static com.tohami.egyptinnovate.utilities.Constants.Prefs.LANGUAGE_KEY;
-import static com.tohami.egyptinnovate.utilities.LocalizationHelper.LOCALE_ENGLISH;
-
 
 
 public abstract class BaseActivity extends DaggerAppCompatActivity {
 
     protected Toolbar myToolbar;
+    @Inject
+    protected AppSettings appSettings ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LocalizationHelper.changeAppLanguage(appSettings.getCurrentLanguage().getLanguageCode() ,this);
         setContentView(getLayoutId());
         initializeViews();
         setListeners();
@@ -58,17 +57,6 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(show);
         }
 
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String language = InnovateApplication.preferences.getString(LANGUAGE_KEY, LOCALE_ENGLISH);
-            ContextWrapper contextWrapper = LocaleContextWrapper.wrap(newBase, language);
-            super.attachBaseContext(contextWrapper);
-        } else {
-            super.attachBaseContext(newBase);
-        }
     }
 
     protected void showSimpleSnack(String msg) {

@@ -23,14 +23,16 @@ android {
             dimension "mode"
             applicationIdSuffix ".dev"
             versionNameSuffix "-dev"
-            buildConfigField "String", "BASE_URL", "\"https://egyptinnovate.com/en/api/v01/\""
+            buildConfigField "String", "BASE_EN_URL", "\"https://egyptinnovate.com/en/api/v01/\""
+            buildConfigField "String", "BASE_AR_URL", "\"https://egyptinnovate.com/api/v01/\""
         }
         live {
             dimension "mode"
             applicationIdSuffix ".live"
             versionNameSuffix "-live"
             //should be different urls
-            buildConfigField "String", "BASE_URL", "\"https://https://egyptinnovate.com/en/api/v01/\""
+            buildConfigField "String", "BASE_EN_URL", "\"https://egyptinnovate.com/en/api/v01/\""
+            buildConfigField "String", "BASE_AR_URL", "\"https://egyptinnovate.com/api/v01/\""
         }
     }
     compileOptions {

@@ -8,5 +8,6 @@
     <color name="book_loading_page">#ffffff</color>
     <color name="colorPrimaryText">#de000000</color>
     <color name="colorSecondaryText">#8a000000</color>
+    <color name="darkGold">#ffb90f</color>
 
 </resources>

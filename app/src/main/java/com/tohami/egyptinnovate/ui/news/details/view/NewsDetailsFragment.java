@@ -45,7 +45,7 @@ public class NewsDetailsFragment extends BaseFragment {
     @Inject
     NewsDetailsViewModelFactory newsDetailsViewModelFactory;
 
-    ShareCompat.IntentBuilder shareIntent;
+    private ShareCompat.IntentBuilder shareIntent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class NewsDetailsFragment extends BaseFragment {
             tvNewsDescription.setText(details.getItemDescription());
             tvNewsPublishDate.setText(details.getPostDate());
             tvNewsLikes.setText(getString(R.string.likes, details.getLikes()));
-            tvNewsViews.setText(getString(R.string.likes, details.getNumofViews()));
+            tvNewsViews.setText(getString(R.string.views, details.getNumofViews()));
             if (details.getImageUrl() == null || details.getImageUrl().isEmpty())
                 ivNewsImage.setImageResource(R.drawable.details_placeholder);
             else {

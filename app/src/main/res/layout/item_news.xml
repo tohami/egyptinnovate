@@ -89,7 +89,7 @@
                     android:id="@+id/tv_news_views"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_large"
+                    android:layout_marginEnd="@dimen/margin_mid"
                     android:gravity="top"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/small_text_size"
@@ -111,6 +111,7 @@
         android:layout_marginTop="@dimen/row_item_margin_vertical"
         android:layout_marginEnd="@dimen/margin_mid"
         android:adjustViewBounds="true"
+        android:scaleX="@integer/imageScaleX"
         android:src="@drawable/news_article_label" />
 </FrameLayout>
 

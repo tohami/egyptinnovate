@@ -10,7 +10,8 @@
         android:id="@+id/news_details_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:layoutAnimation="@anim/partial_in_from_left_animation">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,12 +74,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_like"
-                                android:layout_marginEnd="@dimen/margin_small"/>
+                                android:layout_marginEnd="@dimen/margin_small"
+                                android:tint="@color/darkGold"/>
                             <TextView
                                 android:id="@+id/tv_news_likes"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/white"
+                                android:textColor="@color/darkGold"
                                 android:text="Likes (754)"
                                 />
                         </LinearLayout>

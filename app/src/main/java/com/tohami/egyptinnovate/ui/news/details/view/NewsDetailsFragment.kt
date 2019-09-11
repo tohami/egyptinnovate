@@ -16,6 +16,7 @@ import com.tohami.egyptinnovate.ui.base.BaseFragment
 import com.tohami.egyptinnovate.ui.news.details.viewModel.NewsDetailsViewModel
 import com.tohami.egyptinnovate.ui.news.details.viewModel.NewsDetailsViewModelFactory
 import com.tohami.egyptinnovate.utilities.Constants
+import com.tohami.egyptinnovate.utilities.ifNull
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_news_details.*
 import javax.inject.Inject
@@ -110,7 +111,7 @@ class NewsDetailsFragment : BaseFragment() {
                     .setType("text/plain")
                     .setChooserTitle(getString(R.string.share_article_chooser_header))
                     .setText(details.shareURL)
-        }?:run {
+        }.ifNull {
             news_details_container.visibility = View.GONE
             msg_container.visibility = View.VISIBLE
             tv_msg.setText(R.string.somethingWrong)

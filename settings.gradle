@@ -1,1 +1,8 @@
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  'sun_rise/.android/include_flutter.groovy'
+))
+
+include ':sun_rise'

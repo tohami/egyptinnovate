@@ -88,10 +88,10 @@ class NewsListAdapter(list: List<NewsItem>, private val onItemClickListener: OnI
         }
 
         private fun animateViewHolder() {
-            val itemAnimator = AnimationUtils.loadLayoutAnimation(itemView.context, R.anim.partial_in_from_left_animation)
-            val labelAnimator = AnimationUtils.loadAnimation(itemView.context, R.anim.partial_in_from_right)
-            itemView.startAnimation(itemAnimator.animation)
-            itemView.iv_news_type_label.startAnimation(labelAnimator)
+//            val itemAnimator = AnimationUtils.loadLayoutAnimation(itemView.context, R.anim.partial_in_from_left_animation)
+//            val labelAnimator = AnimationUtils.loadAnimation(itemView.context, R.anim.partial_in_from_right)
+//            itemView.startAnimation(itemAnimator.animation)
+//            itemView.iv_news_type_label.startAnimation(labelAnimator)
         }
 
         /**

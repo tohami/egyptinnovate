@@ -48,6 +48,26 @@
                 android:textAlignment="center"/>
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/error_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_margin="@dimen/margin_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <FrameLayout
+                android:id="@+id/error_frame"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:textSize="@dimen/mid_text_size"
+                android:padding="@dimen/margin_mid"
+                android:textAlignment="center"/>
+        </androidx.cardview.widget.CardView>
+
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

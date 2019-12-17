@@ -2,6 +2,7 @@ package com.tohami.egyptinnovate.ui.news.list.view
 
 import android.os.Bundle
 import android.view.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.tohami.egyptinnovate.R
@@ -11,6 +12,7 @@ import com.tohami.egyptinnovate.ui.base.BaseFragment
 import com.tohami.egyptinnovate.ui.news.list.viewModel.NewsListViewModel
 import com.tohami.egyptinnovate.ui.news.list.viewModel.NewsListViewModelFactory
 import com.tohami.egyptinnovate.utilities.Constants
+import io.flutter.embedding.android.FlutterFragment
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import java.util.*
@@ -19,11 +21,16 @@ import javax.inject.Inject
 
 class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
 
+    companion object {
+        private const val TAG_FLUTTER_FRAGMENT = "flutter_fragment"
+    }
+
     private lateinit var newsListAdapter: NewsListAdapter
     private lateinit var mViewModel: NewsListViewModel
 
     @Inject
     lateinit var viewModelFactory: NewsListViewModelFactory
+    private lateinit var flutterFragment: FlutterFragment
 
     override val layoutId: Int
         get() = R.layout.fragment_news_list
@@ -40,10 +47,10 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
             }
             Constants.Status.FAIL -> {
                 rv_news.visibility = View.GONE
-                msg_container.visibility = View.VISIBLE
+                error_container.visibility = View.VISIBLE
                 refresh_layout.isRefreshing = false
                 progress_layout.visibility = View.GONE
-                tv_msg.text = listDataModel.errorMsg
+                error_frame.visibility = View.VISIBLE
             }
             Constants.Status.NO_NETWORK -> {
                 rv_news.visibility = View.GONE
@@ -65,6 +72,17 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        val cachedFragment = fragmentManager?.findFragmentByTag(TAG_FLUTTER_FRAGMENT)
+
+        flutterFragment =
+                if (cachedFragment != null) cachedFragment as FlutterFragment
+                else FlutterFragment.createDefault()
+
+        childFragmentManager
+                .beginTransaction()
+                .add(R.id.error_frame , flutterFragment as Fragment)
+                .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -107,6 +125,18 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
         Navigation
                 .findNavController(view)
                 .navigate(R.id.action_fragmentNewsList_to_fragmentNewsDetails, args)
+    }
+
+    override fun onRequestPermissionsResult(
+            requestCode: Int,
+            permissions: Array<String?>,
+            grantResults: IntArray
+    ) {
+        flutterFragment.onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+        )
     }
 
 }

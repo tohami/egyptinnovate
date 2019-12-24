@@ -12,6 +12,7 @@ class InnovateApplication : DaggerApplication() {
     override fun onCreate() {
         super.onCreate()
         setupPicasso()
+        Finit.init(this)
     }
 
     private fun setupPicasso() {

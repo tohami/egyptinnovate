@@ -1,6 +1,7 @@
 package com.tohami.egyptinnovate.ui.navigation
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,10 @@ import com.tohami.egyptinnovate.R
 import kotlinx.android.synthetic.main.fragment_navigation_drawer.*
 
 
-class NavigationDrawerFragment(private val onClickListener: View.OnClickListener) : Fragment() {
+class NavigationDrawerFragment : Fragment() {
+
+
+    private var onClickListener: View.OnClickListener? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

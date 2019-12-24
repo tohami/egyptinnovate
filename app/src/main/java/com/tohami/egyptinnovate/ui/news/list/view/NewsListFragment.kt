@@ -1,11 +1,13 @@
 package com.tohami.egyptinnovate.ui.news.list.view
 
+import android.app.Application
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.tohami.egyptinnovate.R
+import com.tohami.egyptinnovate.app.Finit
 import com.tohami.egyptinnovate.data.model.DataModel
 import com.tohami.egyptinnovate.data.model.NewsItem
 import com.tohami.egyptinnovate.ui.base.BaseFragment
@@ -45,19 +47,18 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
                 progress_layout.visibility = View.GONE
                 newsListAdapter.replaceItems(listDataModel?.responseBody?: emptyList())
             }
-            Constants.Status.FAIL -> {
+            Constants.Status.NO_NETWORK -> {
                 rv_news.visibility = View.GONE
-                error_container.visibility = View.VISIBLE
                 refresh_layout.isRefreshing = false
                 progress_layout.visibility = View.GONE
                 error_frame.visibility = View.VISIBLE
             }
-            Constants.Status.NO_NETWORK -> {
+            Constants.Status.FAIL -> {
                 rv_news.visibility = View.GONE
                 msg_container.visibility = View.VISIBLE
                 refresh_layout.isRefreshing = false
                 progress_layout.visibility = View.GONE
-                tv_msg.setText(R.string.error_no_internet_connection)
+                tv_msg.setText(R.string.somethingWrong)
             }
             Constants.Status.LOADING -> {
                 if (!refresh_layout.isRefreshing) {
@@ -73,15 +74,10 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        val cachedFragment = fragmentManager?.findFragmentByTag(TAG_FLUTTER_FRAGMENT)
-
-        flutterFragment =
-                if (cachedFragment != null) cachedFragment as FlutterFragment
-                else FlutterFragment.createDefault()
 
         childFragmentManager
                 .beginTransaction()
-                .add(R.id.error_frame , flutterFragment as Fragment)
+                .add(R.id.error_frame , Finit.init(activity?.application as Application)?.get(this) as Fragment)
                 .commit()
     }
 
@@ -114,7 +110,6 @@ class NewsListFragment : BaseFragment(), NewsListAdapter.OnItemClickedListener {
 
     override fun setListeners() {
         refresh_layout.setOnRefreshListener { mViewModel.refreshNewsList() }
-
     }
 
 

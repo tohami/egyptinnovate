@@ -6,7 +6,8 @@ import 'package:flutter/material.dart' as materials;
 
 import 'TrigonometricFunctions.dart';
 
-class MyPainter extends CustomPainter {
+
+class SunArchPainter extends CustomPainter {
   Color lineColor;
   Color pointsColor;
   List<double> pointsPercent;
@@ -14,7 +15,7 @@ class MyPainter extends CustomPainter {
   double fastAnimationValue;
   double slowAnimationValue;
 
-  MyPainter(
+  SunArchPainter(
       {this.lineColor,
       this.pointsColor,
       this.pointsPercent,

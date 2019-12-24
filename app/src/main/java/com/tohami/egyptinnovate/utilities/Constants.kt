@@ -24,4 +24,12 @@ class Constants {
         val DEFAULT_LANGUAGE = ENGLISH
     }
 
+    object Flutter {
+        val ENGINE_ID = "flutter_engine_id"
+        val PRAYER_WIDGET = "/prayer"
+        val NO_NETWORK_WIDGET = "/game"
+    }
+
+
+
 }

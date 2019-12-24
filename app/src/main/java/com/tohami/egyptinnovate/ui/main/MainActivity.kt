@@ -81,7 +81,7 @@ class MainActivity : BaseActivity() {
 
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.nav_fragment_container, NavigationDrawerFragment(onNavigationItemClicked))
+                .replace(R.id.nav_fragment_container, NavigationDrawerFragment())
                 .commit()
 
         mDrawerToggle.setToolbarNavigationClickListener { navController.popBackStack() }

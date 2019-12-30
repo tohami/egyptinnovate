@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/fragmentNewsList">
+    app:startDestination="@id/RNHelloFragment">
 
     <fragment
         android:id="@+id/fragmentNewsList"
@@ -23,4 +23,10 @@
         android:name="com.tohami.egyptinnovate.ui.news.details.view.NewsDetailsFragment"
         android:label="fragment_news_details"
         tools:layout="@layout/fragment_news_details" />
+    <fragment
+        android:id="@+id/RNHelloFragment"
+        android:name="com.tohami.egyptinnovate.ui.battery.RNHelloFragment"
+        android:label="RNHelloFragment" />
+
+
 </navigation>

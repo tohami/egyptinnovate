@@ -22,11 +22,11 @@ allprojects {
         jcenter()
         maven {
             // All of React Native (JS, Android binaries) is installed from npm
-            url "$rootDi/rnbattary/rn_handler/node_modules/react-native/android"
+            url "$rootDir/rnbattery/rn_handler/node_modules/react-native/android"
         }
         maven {
             // Android JSC is installed from npm
-            url("$rootDir/rnbattary/rn_handler/node_modules/jsc-android/dist")
+            url("$rootDir/rnbattery/rn_handler/node_modules/jsc-android/dist")
         }
     }
 }

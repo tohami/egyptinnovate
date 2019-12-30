@@ -1,12 +1,12 @@
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
+import BatteryStatus from 'react-native-battery';
 
 class HelloWorld extends React.Component {
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.hello}>Hello, World</Text>
-      </View>
+      <BatteryStatus/>
     );
   }
 }
